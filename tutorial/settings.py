@@ -7,10 +7,20 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
+from tutorial.pipelines import DuplicatesPipeline
+
+
 BOT_NAME = 'tutorial'
 
 SPIDER_MODULES = ['tutorial.spiders']
 NEWSPIDER_MODULE = 'tutorial.spiders'
+
+ITEM_PIPELINES = {
+    'tutorial.pipelines.DuplicatesPipeline':100,
+    'tutorial.pipelines.SaveQuotesPipeline':200
+}
+#Connection DB SQLite
+CONNECTION_STRING = 'sqlite:///scrapy_quotes.db'
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
